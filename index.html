@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title >Tienda de figuras</title>
+</head>
+<body style="background:rgb(192, 227, 248) ; " >
+   
+<div id="app">
+<!-- INICIO NAVBAR -->
+<div class="navbar-fixed">
+<nav>
+    <div class="nav-wrapper #b71c1c red darken-4 ">
+        <a href="#" class="brand-logo" style="padding-left: 10px;">Mis Figuras</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            
+            <li><a href="#" data-target="modal" class=" modal-trigger" @click="reload"> <b>Carro:</b> {{suma}}</a></li>
+            <li><a href="#" @click="reload"> <b>Total:</b> {{Total}}</a></li>
+            
+        </ul>
+    </div>
+</nav>
+</div>
+<!-- FIN NAVBAR -->
+
+<div class="container">
+
+<div class="row" >
+   
+     <div class="col s12 l6">
+      <h4>Imagen del producto</h4>
+      <img class="responsive-img" v-bind:src="img">
+
+     </div>
+
+
+<div class="col s12 l6">
+    
+<h3>Detalles del Producto</h3>
+
+<h5 v-if="stock>10">Hay Stock</h5>
+<h5 v-else-if="stock<=10 && stock >0">Quedan pocas unidades</h5>
+<h5 v-else style="color: red;">AGOTADO</h5>
+<h5>Precio:$ {{precio}}</h5>
+
+<hr>
+<h6 >Producto: {{Producto}} 
+<br>
+ Marca: {{marca}}
+<br>
+Figura: {{figura}}
+<br>
+Dimenciones: {{dimenciones}}
+<br>
+Genero: {{genero}}
+<br>
+Material: {{materiral}}
+<br>
+Serie Animada: {{serieAnimada}}
+<br>
+Modelo: {{modelo}}
+</h6>
+<hr>
+<button v-on:click="anadirCarro" class="waves-effect waves-light waves-yellow blue btn" :disabled="!stock" onclick="M.toast({html: 'Añadiste el elemento al carro',displayLength:1500})">Agregar al carro</button>
+<!--<button v-on:click="eliminarcarro" class="waves-effect waves-light waves-yellow red btn" onclick="M.toast({html: 'Eliminaste el elemento al carro',displayLength:1500})" >Eliminar del carro</button>
+-->
+<hr>
+<h3 >Mas Figuras</h3>
+<div v-for="(variante, index) in variantes" :key="variante.id">
+<p style="font-family: 'Times New Roman', Times, serif; font-size: 20px;  cursor: pointer " @click=" cambiarVariante(index)">
+     {{variante.modelo}}  </p>
+</div>
+
+<hr>
+
+
+</div>
+
+
+
+
+</div>
+ </div>
+<!-- Modal-->
+<div id="modal" class="modal bottom-sheet">
+    <div class="modal-content">
+        <div class="container">
+            <h4>Carrito de compra</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Modelo</th>
+                        <th>Precio</th>
+                        <th>cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr v-for="producto in carrito" >
+               <td v-for="item in producto" >{{item}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div> 
+<div class="modal-footer">
+    <button @click="eliminarcarro" class="btn">Vaciar carro</button>
+</div>
+
+</div>
+<!-- FIN Modal -->
+
+</div>
+
+
+
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+ <!-- Compiled and minified JavaScript -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
+ 
+ <script src="js/app.js"></script>
+ <script src="js/model.js"></script>
+     
+</body>
+</html>

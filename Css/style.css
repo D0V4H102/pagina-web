@@ -1,0 +1,13 @@
+.carrito{
+margin-top: 20px;
+margin-right: 50px;
+float: right;
+border: 1px solid #d8d8d8;
+padding: 5px 20px;
+}
+
+body{
+    font-family: 'Spartan', sans-serif;
+    font-size: 17px;
+}
+
